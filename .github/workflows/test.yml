@@ -1,0 +1,43 @@
+name: test
+on:
+  push:
+  pull_request:
+permissions: {}
+jobs:
+  unit:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 24
+      - run: node --test
+
+  # The action itself, on a real runner, against a real deploy history.
+  action:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - id: dora
+        uses: ./
+        with:
+          repository: zhenxi0901/portfolio
+          workflow: deploy.yml
+          job: deploy
+          event: workflow_run
+      - name: The card and the numbers are there
+        env:
+          DEPLOYS: ${{ steps.dora.outputs.deploys }}
+        run: |
+          test -s dora/dora-dark.svg && test -s dora/dora-light.svg && test -s dora/dora.json
+          grep -q '<svg ' dora/dora-dark.svg
+          test -n "$DEPLOYS"
+          echo "$DEPLOYS deploys in the window"

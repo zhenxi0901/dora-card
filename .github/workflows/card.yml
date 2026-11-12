@@ -1,0 +1,35 @@
+# The card in this repository's README: my portfolio's deploy history, redrawn every six hours
+# and published to the output branch.
+name: card
+on:
+  schedule:
+    - cron: "17 */6 * * *"
+  workflow_dispatch:
+permissions: {}
+concurrency:
+  group: card
+  cancel-in-progress: true
+jobs:
+  card:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # push the card to the output branch
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - id: dora
+        uses: ./
+        with:
+          repository: zhenxi0901/portfolio
+          workflow: deploy.yml
+          job: deploy
+          event: workflow_run
+      - name: Publish the card to the output branch
+        env:
+          DEPLOYS: ${{ steps.dora.outputs.deploys }}
+        run: |
+          git switch --orphan output
+          mv dora/* . && rmdir dora
+          git add dora-dark.svg dora-light.svg dora.json
+          git -c user.name="github-actions[bot]" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" \
+            commit -q -m "DORA card: $DEPLOYS deploys"
+          git push -q --force origin output

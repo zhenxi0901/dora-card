@@ -1,0 +1,53 @@
+name: DORA card
+description: The four DORA metrics for a repository that deploys with GitHub Actions, drawn as an SVG card for its README.
+author: Li ZhenXi
+branding:
+  icon: activity
+  color: green
+
+inputs:
+  workflow:
+    description: The deploy workflow's file name, such as deploy.yml.
+    required: true
+  repository:
+    description: The repository to measure, as owner/name. Defaults to the one running the action.
+    default: ${{ github.repository }}
+  branch:
+    description: Only runs on this branch count.
+    default: main
+  job:
+    description: >-
+      Count a run as a deploy only by this job's result, for a workflow that does more than deploy
+      (tests, releases, clean-up). Empty means the whole run's result.
+    default: ""
+  event:
+    description: Only runs started by this event count, such as push or workflow_run (to leave out manual runs and drills). Empty means any.
+    default: ""
+  window-days:
+    description: How many days back to measure, 1 to 365.
+    default: "30"
+  title:
+    description: The card's title. Defaults to the repository.
+    default: ""
+  output-dir:
+    description: Where to write dora.json, dora-dark.svg and dora-light.svg.
+    default: dora
+  token:
+    description: A token that can read the repository's Actions runs and commits.
+    default: ${{ github.token }}
+
+outputs:
+  deploys:
+    description: Successful deploys in the window.
+  deploys-per-week:
+    description: Successful deploys per week.
+  lead-time-hours:
+    description: Median hours from commit to the deploy that shipped it (empty if nothing shipped).
+  change-failure-rate:
+    description: Failed deploys over all deploys, 0 to 1 (empty if none).
+  time-to-restore-hours:
+    description: Median hours from a failed deploy to the next successful one (empty if none).
+
+runs:
+  using: node24
+  main: src/main.mjs

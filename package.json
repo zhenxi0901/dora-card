@@ -1,0 +1,11 @@
+{
+  "name": "dora-card",
+  "private": true,
+  "description": "The four DORA metrics for a repository that deploys with GitHub Actions, as an SVG card.",
+  "type": "module",
+  "license": "MIT",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "test": "node --test"
+  }
+}
