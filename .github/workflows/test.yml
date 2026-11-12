@@ -1,6 +1,7 @@
 name: test
 on:
   push:
+    branches: [main] # not tags: a release tag points at a commit already tested
   pull_request:
 permissions: {}
 jobs:
