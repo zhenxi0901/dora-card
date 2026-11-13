@@ -13,12 +13,13 @@ inputs:
     description: The repository to measure, as owner/name. Defaults to the one running the action.
     default: ${{ github.repository }}
   branch:
-    description: Only runs on this branch count.
-    default: main
+    description: Only runs on this branch count. Empty means the repository's default branch.
+    default: ""
   job:
     description: >-
       Count a run as a deploy only by this job's result, for a workflow that does more than deploy
-      (tests, releases, clean-up). Empty means the whole run's result.
+      (tests, releases, clean-up). It is the job's display name; matrix jobs such as "deploy (prod)"
+      count as "deploy". Empty means the whole run's result.
     default: ""
   event:
     description: Only runs started by this event count, such as push or workflow_run (to leave out manual runs and drills). Empty means any.
@@ -46,7 +47,7 @@ outputs:
   change-failure-rate:
     description: Failed deploys over all deploys, 0 to 1 (empty if none).
   time-to-restore-hours:
-    description: Median hours from a failed deploy to the next successful one (empty if none).
+    description: Median hours from an incident's first failed deploy to the next successful one (empty if none).
 
 runs:
   using: node24

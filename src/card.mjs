@@ -36,7 +36,7 @@ export function figures(m) {
     {
       value: duration(m.timeToRestoreHours.median),
       label: "time to restore",
-      note: m.timeToRestoreHours.count ? `median of ${m.timeToRestoreHours.count}` : m.failed ? "not restored yet" : "no failures",
+      note: m.timeToRestoreHours.count ? `median of ${plural(m.timeToRestoreHours.count, "incident")}` : m.failed ? "not restored yet" : "no failures",
     },
   ];
 }

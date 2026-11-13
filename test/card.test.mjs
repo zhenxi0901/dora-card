@@ -34,7 +34,7 @@ test("the figures and their small print", () => {
       ["deploys", "3", "7.0 a week"],
       ["lead time", "30 min", "median of 4 commits"],
       ["change failure rate", "25%", "1 of 4"],
-      ["time to restore", "2.1 days", "median of 1"],
+      ["time to restore", "2.1 days", "median of 1 incident"],
     ],
   );
 });

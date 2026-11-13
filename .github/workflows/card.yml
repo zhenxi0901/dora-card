@@ -12,6 +12,7 @@ concurrency:
 jobs:
   card:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     permissions:
       contents: write # push the card to the output branch
     steps:
