@@ -1,6 +1,6 @@
 # dora-card
 
-The four [DORA metrics](https://dora.dev/guides/dora-metrics-four-keys/) for any repository that deploys with GitHub Actions, as a card for its README. No dependencies, no service to run: a GitHub Action reads your deploy workflow's history and writes an SVG.
+The four [DORA metrics](https://dora.dev/guides/dora-metrics/) for any repository that deploys with GitHub Actions, as a card for its README. No dependencies, no service to run: a GitHub Action reads your deploy workflow's history and writes an SVG.
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/zhenxi0901/dora-card/output/dora-dark.svg" />
@@ -17,7 +17,7 @@ Add a workflow that measures on a schedule and publishes the card to a branch of
 ```yaml
 name: dora-card
 on:
-  schedule: [{ cron: "41 */6 * * *" }] # off the hour, when scheduled runs queue the longest
+  schedule: [{ cron: "41 */6 * * *" }] # not on the hour: that is when GitHub's scheduled runs queue the longest
   workflow_dispatch:
 permissions: {}
 concurrency:
@@ -34,7 +34,7 @@ jobs:
       deploys: ${{ steps.dora.outputs.deploys }}
     steps:
       - id: dora
-        uses: zhenxi0901/dora-card@v1 # better: a release's full commit SHA, which can't move
+        uses: zhenxi0901/dora-card@95c72ecb76b91794d1d43704992aed9635d27204 # v1.1.0 (a commit SHA can't move; @v1 follows the latest 1.x)
         with:
           workflow: deploy.yml
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
@@ -122,7 +122,7 @@ My portfolio's own pipeline computes richer versions of these (automatic rollbac
 
 GitHub stops a filtered list of runs at 1,000, so after ten pages the listing starts again from the oldest run read so far (`created=<=` its time). It stops, with a warning, after 5,000 runs. Requests go four at a time, and each has 30 seconds to answer. One that gets a 5xx, a 429 or a secondary rate limit is tried up to three more times, after waiting as long as GitHub's `retry-after` asks, or 1, 2 and 4 seconds.
 
-That costs about two requests per deploy in the window with `job` set (its jobs and a comparison) or one without, plus one for every 100 runs listed and one to look up the default branch: my portfolio's 56 deploys in 30 days take 115 requests. The `GITHUB_TOKEN` a workflow gets allows 1,000 requests an hour for the whole repository, so a window of several hundred deploys needs a shorter `window-days` or a token with a higher limit.
+That costs about two requests per deploy in the window with `job` set (its jobs and a comparison) or one without, plus one for every 100 runs listed and one to look up the default branch. GITHUB_TOKEN allows 1,000 requests an hour per repository, which covers hundreds of deploys a month.
 
 ```sh
 node --test   # the metrics, the card, the API client and the action end to end, against a fake API
