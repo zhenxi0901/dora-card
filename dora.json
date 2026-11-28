@@ -1,0 +1,178 @@
+{
+  "repository": "zhenxi0901/portfolio",
+  "workflow": "deploy.yml",
+  "branch": "main",
+  "job": "deploy",
+  "event": "workflow_run",
+  "generated": "2026-11-28T07:55:43.271Z",
+  "windowDays": 30,
+  "deploys": 52,
+  "failed": 0,
+  "deploysPerWeek": 12.133333333333333,
+  "leadTimeHours": {
+    "median": 0.16944444444444445,
+    "commits": 85
+  },
+  "changeFailureRate": 0,
+  "timeToRestoreHours": {
+    "median": null,
+    "count": 0
+  },
+  "perDay": [
+    {
+      "day": "2026-10-29",
+      "deploys": 0,
+      "failed": 0
+    },
+    {
+      "day": "2026-10-30",
+      "deploys": 0,
+      "failed": 0
+    },
+    {
+      "day": "2026-10-31",
+      "deploys": 0,
+      "failed": 0
+    },
+    {
+      "day": "2026-11-01",
+      "deploys": 0,
+      "failed": 0
+    },
+    {
+      "day": "2026-11-02",
+      "deploys": 0,
+      "failed": 0
+    },
+    {
+      "day": "2026-11-03",
+      "deploys": 0,
+      "failed": 0
+    },
+    {
+      "day": "2026-11-04",
+      "deploys": 0,
+      "failed": 0
+    },
+    {
+      "day": "2026-11-05",
+      "deploys": 0,
+      "failed": 0
+    },
+    {
+      "day": "2026-11-06",
+      "deploys": 0,
+      "failed": 0
+    },
+    {
+      "day": "2026-11-07",
+      "deploys": 0,
+      "failed": 0
+    },
+    {
+      "day": "2026-11-08",
+      "deploys": 0,
+      "failed": 0
+    },
+    {
+      "day": "2026-11-09",
+      "deploys": 0,
+      "failed": 0
+    },
+    {
+      "day": "2026-11-10",
+      "deploys": 0,
+      "failed": 0
+    },
+    {
+      "day": "2026-11-11",
+      "deploys": 12,
+      "failed": 0
+    },
+    {
+      "day": "2026-11-12",
+      "deploys": 9,
+      "failed": 0
+    },
+    {
+      "day": "2026-11-13",
+      "deploys": 8,
+      "failed": 0
+    },
+    {
+      "day": "2026-11-14",
+      "deploys": 10,
+      "failed": 0
+    },
+    {
+      "day": "2026-11-15",
+      "deploys": 0,
+      "failed": 0
+    },
+    {
+      "day": "2026-11-16",
+      "deploys": 6,
+      "failed": 0
+    },
+    {
+      "day": "2026-11-17",
+      "deploys": 0,
+      "failed": 0
+    },
+    {
+      "day": "2026-11-18",
+      "deploys": 0,
+      "failed": 0
+    },
+    {
+      "day": "2026-11-19",
+      "deploys": 0,
+      "failed": 0
+    },
+    {
+      "day": "2026-11-20",
+      "deploys": 0,
+      "failed": 0
+    },
+    {
+      "day": "2026-11-21",
+      "deploys": 0,
+      "failed": 0
+    },
+    {
+      "day": "2026-11-22",
+      "deploys": 0,
+      "failed": 0
+    },
+    {
+      "day": "2026-11-23",
+      "deploys": 7,
+      "failed": 0
+    },
+    {
+      "day": "2026-11-24",
+      "deploys": 0,
+      "failed": 0
+    },
+    {
+      "day": "2026-11-25",
+      "deploys": 0,
+      "failed": 0
+    },
+    {
+      "day": "2026-11-26",
+      "deploys": 0,
+      "failed": 0
+    },
+    {
+      "day": "2026-11-27",
+      "deploys": 0,
+      "failed": 0
+    },
+    {
+      "day": "2026-11-28",
+      "deploys": 0,
+      "failed": 0
+    }
+  ]
+}
